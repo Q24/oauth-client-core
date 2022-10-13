@@ -6,13 +6,13 @@
   "author": "ilionx",
   "email": "info@ilionx.com",
   "license": "GPL-3.0-or-later",
-  "homepage": "https://github.com/Q24/oauth-client",
+  "homepage": "https://github.com/Q24/oauth-client-core",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Q24/oauth-client.git"
+    "url": "git+https://github.com/Q24/oauth-client-core.git"
   },
   "bugs": {
-    "url": "https://github.com/Q24/oauth-client/issues"
+    "url": "https://github.com/Q24/oauth-client-core/issues"
   },
   "keywords": [
     "oidc",
