@@ -1,0 +1,17 @@
+{
+  "include": ["./src/**/*"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": true,
+    "outDir": "./dist",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "ESNext",
+    "strict": true,
+    "lib": ["ESNext", "DOM"],
+    "importsNotUsedAsValues": "error"
+  }
+}

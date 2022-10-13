@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="../dist/index.umd.js"></script> -->
+    <script
+      type="module"
+      src="/test/test-client/test-client-config.js"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="clearSession">clearSession</button>
+    <button onclick="window.location.href = ''">refresh</button>
+    <button id="checkSession">checkSession</button>
+    <div>
+      <label for="scope">scope</label>
+      <input id="scope" value="openid" />
+      <label for="response_type"></label>
+      <input id="response_type" value="id_token" />
+    </div>
+    <div>
+      <button id="getUserInfo">get user info</button>
+    </div>
+  </body>
+  <script>
+    document.getElementById("clearSession").onclick = () => {
+      window.sessionStorage.clear();
+    };
+  </script>
+</html>
