@@ -1,3 +1,10 @@
+## [1.2.2-next.1](https://github.com/Q24/oauth-client-core/compare/v1.2.1...v1.2.2-next.1) (2022-10-13)
+
+
+### Bug Fixes
+
+* test new version ([d387200](https://github.com/Q24/oauth-client-core/commit/d38720004db995a36265db96e433819fb65765f3))
+
 # 1.0.0-next.1 (2022-10-13)
 
 
