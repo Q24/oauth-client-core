@@ -1,3 +1,10 @@
+# [1.3.0-next.1](https://github.com/Q24/oauth-client-core/compare/v1.2.2-next.1...v1.3.0-next.1) (2022-10-14)
+
+
+### Features
+
+* debug mode now possible to enable by setting localStorage variable ([b5a91b5](https://github.com/Q24/oauth-client-core/commit/b5a91b5c0527bac4e0692a802bb5ad9fde6c692b))
+
 ## [1.2.2-next.1](https://github.com/Q24/oauth-client-core/compare/v1.2.1...v1.2.2-next.1) (2022-10-13)
 
 
