@@ -12,4 +12,8 @@ export function configure(
   } else {
     config = configuration;
   }
+
+  if (localStorage.getItem('oauth_client_debug')) {
+    config.debug = true;
+  }
 }
