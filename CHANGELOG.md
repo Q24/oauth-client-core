@@ -1,3 +1,10 @@
+## [1.3.1-next.2](https://github.com/Q24/oauth-client-core/compare/v1.3.1-next.1...v1.3.1-next.2) (2022-12-12)
+
+
+### Bug Fixes
+
+* remove the iFrame Silent Refresh from the default checkSession because of Cross Domain issues with the iFrames. Added TODO to investigate and pick up later. For now the functionality is turned off because it is just inconvenient, not blocking. ([083bb3f](https://github.com/Q24/oauth-client-core/commit/083bb3fe58146bdd5942ebf1f171328323393e74))
+
 ## [1.3.1-next.1](https://github.com/Q24/oauth-client-core/compare/v1.3.0...v1.3.1-next.1) (2022-12-12)
 
 
