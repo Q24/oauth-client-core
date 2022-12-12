@@ -1,3 +1,10 @@
+## [1.3.1-next.1](https://github.com/Q24/oauth-client-core/compare/v1.3.0...v1.3.1-next.1) (2022-12-12)
+
+
+### Bug Fixes
+
+* catch iFrame error, so the silentRefresh is properly handled ([9cb9334](https://github.com/Q24/oauth-client-core/commit/9cb93346fdf7ba1f91fdf25cd3e46c06732fa133))
+
 # [1.3.0](https://github.com/Q24/oauth-client-core/compare/v1.2.1...v1.3.0) (2022-10-14)
 
 
