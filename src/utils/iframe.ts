@@ -47,10 +47,6 @@ export function loadIframeUrl(url: string): Promise<string> {
       resolve(iFrame.contentWindow.location.href);
     };
 
-    iFrame.onerror = () => {
-      reject('iframe error (possible reasons: COR / CSP / Frame Ancestors / other iFrame security issues');
-    }
-
     timeout(20000).then(() => {
       reject('iFrame rejected');
     });

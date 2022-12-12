@@ -106,22 +106,23 @@ export async function implicitFlow(
   }
 
   // 4. get the auth result from a silent refresh
-  const authResultFromSilentRefresh = await silentRefresh(
-    authValidationOptions,
-  ).catch(() => null);
-  if (authResultFromSilentRefresh) {
-    if (await isValidNewAuthResult(authResultFromSilentRefresh)) {
-      storeAuthResult(authResultFromSilentRefresh);
-      if (
-        isValidStoredAuthResult(
-          authResultFromSilentRefresh,
-          authValidationOptions?.extraAuthFilters || [],
-        )
-      ) {
-        return authResultFromSilentRefresh;
-      }
-    }
-  }
+  // TODO: Reenable this once we find a way to Catch the `ERROR DOMException: Blocked a frame with origin 'origin'` error.
+  // const authResultFromSilentRefresh = await silentRefresh(
+  //   authValidationOptions,
+  // ).catch(() => null);
+  // if (authResultFromSilentRefresh) {
+  //   if (await isValidNewAuthResult(authResultFromSilentRefresh)) {
+  //     storeAuthResult(authResultFromSilentRefresh);
+  //     if (
+  //       isValidStoredAuthResult(
+  //         authResultFromSilentRefresh,
+  //         authValidationOptions?.extraAuthFilters || [],
+  //       )
+  //     ) {
+  //       return authResultFromSilentRefresh;
+  //     }
+  //   }
+  // }
 
   // There is no auth result; try to get one for the next time we call this
   // function, by redirecting to the authorize endpoint.
