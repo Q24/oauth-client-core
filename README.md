@@ -1,27 +1,35 @@
 # Oauth Client Core
 
-This library implements the [OIDC implicit flow](https://openid.net/specs/openid-connect-implicit-1_0.html) / [OIDC Code flow with PKCE](https://openid.net/2015/05/26/enhancing-oauth-security-for-mobile-applications-with-pkse/) for use in a front-end web application. The library can be used directly with any framework of choice. While it is not strictly necessary to use wrapper, there is one [available for Angular](https://www.npmjs.com/package/@ilionx/oauth-client-angular).
+This library implements the [OIDC implicit flow](https://openid.net/specs/openid-connect-implicit-1_0.html) / [OIDC Code flow with PKCE](https://openid.net/2015/05/26/enhancing-oauth-security-for-mobile-applications-with-pkse/) for use in a front-end web application. The library can be used directly with any framework of choice (tested on React, Angular and Vue).
+While it is not strictly necessary to use a wrapper, there is one [available for Angular](https://www.npmjs.com/package/@ilionx/oauth-client-angular) which wraps most API call in Observables.
 
 ## Features
-- Implicit Flow
-- Code Flow with PKCE
-- CSRF Tokens
+- [Implicit Flow](https://openid.net/specs/openid-connect-implicit-1_0.html)
+- [Code Flow with PKCE](https://oauth.net/2/pkce/)
+- [CSRF Tokens](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest)
 - Code samples
-- OpenID Connect Session Management
-- Authetication using redirect
+- [OpenID Connect Session Management](https://openid.net/specs/openid-connect-session-1_0.html)
+- [Authetication using redirect](https://openid.net/specs/openid-connect-implicit-1_0.html#RequestParameters) (display = ``page``)
 
 ## Roadmap
 
-- A future aim is to have this library certified as [OpenID Relying Party] (https://openid.net/certification/#RPs).
+- A future aim is to have this library certified as [OpenID Relying Party](https://openid.net/certification/#RPs).
 - Add support for [all request parameters](https://openid.net/specs/openid-connect-implicit-1_0.html#RequestParameters).
 - Move to native Web Crypto API when IE11 support is not needed anymore.
-- Authentication using popup
+- [Authentication using popup](https://openid.net/specs/openid-connect-implicit-1_0.html#RequestParameters) (display = ``popup``)
 
 ## API Reference
 
-The API reference can be found in the `docs` folder.
+The API reference can be found in the `docs` folder
+
+## Installation
+
+``npm i @ilionx/oauth-client-core --save``
 
 ## How to set the OIDC Config
+
+The package automatically tries to ``GET`` most config parameters by using the ``.well-known/openid-configuration`` discovery enpoint.
+For everything that is not part of that endpoint:
 
 ```ts
 import { configure } from "@ilionx/oauth-client-core";
@@ -35,7 +43,7 @@ configure({
 
 ## How to set the Auth headers on API requests
 
-To access resources, a request may need to include authentication information. This is done via te authorization header. Take caution that you only include this header in requests for protected resources; simply including the header in every request is a security risk.
+To access resources, a request may need to include authentication information. This is done by settings an authorization header. Take caution that you only include this header in requests for protected resources; simply including the header in every request is a security risk.
 
 In the following example, we use axios' request interceptors to add this authorization header. With axios, you may create various axios instances with different interceptors to deal with this. With other implementations, you may need to include headers at a request level.
 
@@ -107,7 +115,7 @@ async function processProtectedRoute(): Promise<void> {
 
 ```
 
-On a component level, you need to make sure at least a auth result is stored
+On a component level, you need to make sure at least an auth result is stored
 
 ```ts
 import { getStoredAuthResult } from "@ilionx/oauth-client-core";
@@ -120,7 +128,12 @@ getStoredAuthResult();
 
 ## Token expiration
 
-Often times, the access token is set to expire after a certain period. Before this period is over, we can still request a new token. The renewal of a token should only take place as long as the user continues to use the application. If the application renews tokens without paying attention to user activity, it is a potential threat to the security of the user's information.
+The library takes care of cleaning up any expired access tokens automatically. Every time a local token is retreived from storage this cleanup process runs.
+
+Often times, the access token is set to expire after a certain period. Before this period is over, we can still request a new token. 
+
+**The renewal of a token should only take place as long as the user continues to use the application.** 
+If the application renews tokens without paying attention to user activity, it is a potential threat to the security of the user's information.
 
 A common way to detect application usage is to hook into requests that have been authenticated. These are either requests to the backend API (i.e. requests to protected resources) or front-end navigation to routes that require authentication. In addition, the necessity of creating a new token must be considered. If the expiration time is still far in the future, it should be decided not to renew the token yet.
 
@@ -172,6 +185,9 @@ if (storedAuthResult) {
 }
 
 ```
+### Known Issues
+> The ``silentRefresh()`` method makes use of iFrame's [as per specs](https://openid.net/specs/openid-connect-session-1_0.html#RPiframe). However, with browsers getting strciter everyday this means you have to set the proper CSP headers for iFrame usage [more info on frame-ancestors](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors), especially when your SSO server is on a different main domain then your application.
+
 
 ## Login
 
@@ -257,6 +273,9 @@ getIdTokenHint({ regex: true });
 
 ## Automatic logout
 
+> *This `isSessionAlive` endpoint is not a standard specification and should be implemented by the backend of the OIDC server. If your instance does not have this functionality implemented the following will not work.
+The `isSessionAlive` URL can be configured in the `config` by setting the `is_session_alive_endpoint`.*
+
 If the session is closed due to inactivity, the user must be logged out to protect the data still on the local computer from access by unauthorized parties. After redirecting to the logged out page, the authentication information will be removed.
 
 In the case a user may still be logged in on another client, they should not be logged out. This is what the isSessionAlive call is for. It checks the server to see if the user is still logged in somewhere. Logging out would also destroy the session for other clients. This would cause these users to eventually be rejected when requesting a renewal of the session, even though they might still be actively using the session.
@@ -293,11 +312,13 @@ const autoLogoutInterval = setInterval(() => {
 
 ```
 
-## Logged out page
+## Logged out page (a.k.a. The `post_logout_redirect_uri`)
 
 See the FAQ for the difference between a logout page and a logged out page.
 
 The logged out page is used to show the user that he has been logged out. Next to this, it should remove local authentication information. This includes local storage on the current domain as well as cookies on other domains via a logout pixel.
+
+This page can be configured by settings the `post_logout_redirect_uri` in the Logout Request. This URI sould also be configured in your client config on the server side.
 
 ### Clean up
 
@@ -308,7 +329,8 @@ import { cleanSessionStorage } from "@ilionx/oauth-client-core";
 
 // Upon opening the logged out page
 cleanSessionStorage();
-
+// Do other cleanup stuff that's specific for your usae case
+...
 ```
 
 ### Logout pixel
@@ -343,7 +365,7 @@ If you are creating a logout pixel, you need to:
     1.  Remove the token from session storage
 1.  Remove the `_csrf` token from session storage
 
-## Auth Result Filters
+## Custom Auth Result Filters
 
 It is possible to write a custom filter for the (stored) auth results. This validator will be used to get a valid result from the stored results (a list of all previously saved auth results). This is useful if the auth results you are using have some non-standard behavior.
 
