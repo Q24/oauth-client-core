@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/@ilionx%2Foauth-client-core.svg)](https://badge.fury.io/js/@ilionx%2Foauth-client-core)
+
 # Oauth Client Core
 
 This library implements the [OIDC implicit flow](https://openid.net/specs/openid-connect-implicit-1_0.html) / [OIDC Code flow with PKCE](https://openid.net/2015/05/26/enhancing-oauth-security-for-mobile-applications-with-pkse/) for use in a front-end web application. The library can be used directly with any framework of choice (tested on React, Angular and Vue).
@@ -424,3 +426,10 @@ a silent refresh, a new access token is fetched in the background, without user 
 
 - The purpose of a **logout page** is to initiate and authorise the termination of a session.
 - The purpose of a **logged out page** is to show the user that he has been logged out. In addition, the **logged out page** is used to remove authentication information.
+
+
+## Contributors
+
+![GitHub Contributors Image](https://contrib.rocks/image?repo=Q24/oauth-client-core)
+
+Want to help? Feel free to open a Pull Request!
