@@ -1,3 +1,10 @@
+# [1.4.0-next.1](https://github.com/Q24/oauth-client-core/compare/v1.3.1-next.2...v1.4.0-next.1) (2023-03-02)
+
+
+### Features
+
+* Refactor clearQueryParameters to cleanUrl and do cleanCode or cleanHashfragment in it ([dad319a](https://github.com/Q24/oauth-client-core/commit/dad319a963984f172b9d38f474af6e6b0697fec1))
+
 ## [1.3.1-next.2](https://github.com/Q24/oauth-client-core/compare/v1.3.1-next.1...v1.3.1-next.2) (2022-12-12)
 
 
