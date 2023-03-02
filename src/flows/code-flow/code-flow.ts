@@ -12,7 +12,7 @@ import {
   isValidStoredAuthResult,
 } from "../../jwt/validate-auth-result";
 import { LogUtil } from "../../utils/log-util";
-import { clearQueryParameters } from "../../utils/url";
+import { cleanUrl } from "../../utils/url";
 import {
   accessTokenRequest,
   createCodeFlowAccessTokenRequestParameters,
@@ -37,7 +37,7 @@ export async function codeFlow(
     LogUtil.debug(
       "The URL does have a code; save it in memory and clear the URL",
     );
-    clearQueryParameters();
+    cleanUrl();
 
     const codeFlowAuthResult = await codeFlowAccessTokenFlow(code);
     LogUtil.debug("Got auth result by token request", codeFlowAuthResult);

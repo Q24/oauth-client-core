@@ -4,7 +4,7 @@ import { discoveryState } from "../../discovery/discovery-state";
 import { LogUtil } from "../../utils/log-util";
 import { timeout } from "../../utils/timeout";
 import {
-  clearQueryParameters,
+  cleanUrl,
   getHashParameters,
   parseQueryParameters,
   toUrlParameterString,
@@ -16,7 +16,7 @@ import type { AuthResult } from "../../jwt/model/auth-result.model";
 export function getSessionUpgradeToken(): string | null {
   const authResultFromUrl = getHashParameters<Partial<AuthResult>>();
   if (authResultFromUrl.session_upgrade_token) {
-    clearQueryParameters();
+    cleanUrl();
     return authResultFromUrl.session_upgrade_token;
   }
 

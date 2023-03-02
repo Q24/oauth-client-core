@@ -1,4 +1,5 @@
-import { LogUtil } from './log-util';
+import { LogUtil } from "./log-util";
+import { isCodeFlow } from "./is-code-flow";
 
 /**
  * Flush state param
@@ -28,7 +29,7 @@ export function getSearchParameters<T>(): T {
 export function parseQueryParameters<T>(queryParametersString: string): T {
   let queryParametersArray;
   const firstSubstring = queryParametersString.substring(0, 1);
-  if (firstSubstring === '#' || firstSubstring === '?') {
+  if (firstSubstring === "#" || firstSubstring === "?") {
     queryParametersArray = queryParametersString.substring(1).split("&");
   } else {
     queryParametersArray = queryParametersString.split("&");
@@ -87,12 +88,18 @@ export function cleanHashFragment(url: string): string {
 
 export function cleanCode(url: string): string {
   const cleanedUrl = new URL(url);
-  cleanedUrl.searchParams.delete('code');
-  cleanedUrl.searchParams.delete('state');
-  LogUtil.debug('Cleaning Code parameter from URL', url, cleanedUrl);
+  cleanedUrl.searchParams.delete("code");
+  cleanedUrl.searchParams.delete("state");
+  LogUtil.debug("Cleaning Code parameter from URL", url, cleanedUrl);
   return cleanedUrl.toString();
 }
 
-export function clearQueryParameters(): void {
-  window.history.replaceState({}, document.title, window.location.pathname);
+export function cleanUrl(): void {
+  let cleanedUrl = window.location.href;
+  if (isCodeFlow()) {
+    cleanedUrl = cleanCode(cleanedUrl);
+  } else {
+    cleanedUrl = cleanHashFragment(cleanedUrl);
+  }
+  window.history.replaceState({}, document.title, cleanedUrl);
 }

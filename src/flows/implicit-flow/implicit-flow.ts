@@ -15,7 +15,7 @@ import {
 import { cleanSessionStorage } from "../../utils/clean-session-storage";
 import { LogUtil } from "../../utils/log-util";
 import { transformScopesStringToArray } from "../../utils/scope";
-import { clearQueryParameters } from "../../utils/url";
+import { cleanUrl } from "../../utils/url";
 import {
   deleteStoredHashString,
   getAuthResultFromStoredHash,
@@ -61,7 +61,7 @@ export async function implicitFlow(
   if (authResultFromUrl) {
     if (await isValidNewAuthResult(authResultFromUrl)) {
       storeAuthResult(authResultFromUrl);
-      clearQueryParameters();
+      cleanUrl();
       if (
         isValidStoredAuthResult(
           authResultFromUrl,
