@@ -1,3 +1,10 @@
+# [1.4.0-next.2](https://github.com/Q24/oauth-client-core/compare/v1.4.0-next.1...v1.4.0-next.2) (2023-03-06)
+
+
+### Bug Fixes
+
+* cleanCode function return cleanedUrl.href instead of cleanedUrl.toString() ([efc35a3](https://github.com/Q24/oauth-client-core/commit/efc35a34d95157be37e9b83e984bc48589050433))
+
 # [1.4.0-next.1](https://github.com/Q24/oauth-client-core/compare/v1.3.1-next.2...v1.4.0-next.1) (2023-03-02)
 
 
