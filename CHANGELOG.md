@@ -1,3 +1,11 @@
+# [1.4.0-next.3](https://github.com/Q24/oauth-client-core/compare/v1.4.0-next.2...v1.4.0-next.3) (2023-03-07)
+
+
+### Features
+
+* getSearchParameters also checks if codeFlowUrl is stored in the sessionStorage ([db1de1f](https://github.com/Q24/oauth-client-core/commit/db1de1f0a3fce4a52bc6d8c5935bee3df530e27b))
+* Rename clean-hash-fragment.js to pre-clean-url.js and extend it with code flow logic. ([758881c](https://github.com/Q24/oauth-client-core/commit/758881c30b285dfc90694d13efa936031d39e63e))
+
 # [1.4.0-next.2](https://github.com/Q24/oauth-client-core/compare/v1.4.0-next.1...v1.4.0-next.2) (2023-03-06)
 
 
