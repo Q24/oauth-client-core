@@ -23,7 +23,15 @@ export function getHashParameters<T>(): T {
 }
 
 export function getSearchParameters<T>(): T {
-  return parseQueryParameters(window.location.search);
+  const urlFromSessionStorage = sessionStorage.getItem('codeFlowUrl');
+  let url: string = window.location.search;
+  
+  if (urlFromSessionStorage) {
+    url = urlFromSessionStorage;
+    sessionStorage.removeItem('codeFlowUrl');
+  }
+
+  return parseQueryParameters(url);
 }
 
 export function parseQueryParameters<T>(queryParametersString: string): T {
