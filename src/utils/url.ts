@@ -101,5 +101,6 @@ export function cleanUrl(): void {
   } else {
     cleanedUrl = cleanHashFragment(cleanedUrl);
   }
+  LogUtil.debug("ReplaceState history with", cleanedUrl);
   window.history.replaceState({}, document.title, cleanedUrl);
 }
