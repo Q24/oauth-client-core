@@ -1,3 +1,10 @@
+# [1.4.0-next.4](https://github.com/Q24/oauth-client-core/compare/v1.4.0-next.3...v1.4.0-next.4) (2023-03-07)
+
+
+### Bug Fixes
+
+* convert urlFromSessionStorage to params instead of complete url for parseQueryParameters ([0f91a9f](https://github.com/Q24/oauth-client-core/commit/0f91a9feeae7f944ad7e8f9b36b7447d8cfbbe6c))
+
 # [1.4.0-next.3](https://github.com/Q24/oauth-client-core/compare/v1.4.0-next.2...v1.4.0-next.3) (2023-03-07)
 
 
