@@ -45,8 +45,8 @@
   },
   "scripts": {
     "prepublishOnly": "npm run build",
-    "copyCleanHashFragment": "cp ./clean-hash-fragment.js dist/clean-hash-fragment.js",
-    "build": "npm run bundle && npm run copyCleanHashFragment && npm run typedoc",
+    "copyPreCleanUrl": "cp pre-clean-url.js dist/pre-clean-url.js",
+    "build": "npm run bundle && npm run copyPreCleanUrl && npm run typedoc",
     "bundle": "rm -rf dist && microbundle --name OAuthClientCore --external none",
     "dev": "microbundle watch --name OAuthClientCore --external none",
     "dev:2": "microbundle watch --name OAuthClientCore --external none -o /Users/meesvandongen/conformance-suite/src/main/resources/static/oidc-test-client/dist",
