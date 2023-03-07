@@ -402,3 +402,9 @@ a silent refresh, a new access token is fetched in the background, without user 
 
 - The purpose of a **logout page** is to initiate and authorise the termination of a session.
 - The purpose of a **logged out page** is to show the user that he has been logged out. In addition, the **logged out page** is used to remove authentication information.
+
+
+### How do I prevent tokens leaking to third parties?
+
+If you are using some kind of analytics tool which registers the url, you want to make sure no access tokens or authorize codes are leaked to third parties.
+To prevent this potential security risk a javascript file named `pre-clean-url.js` is bundled within the package. Link this file in the `<head>` of your html file and make sure its the first script that gets loaded. What this script does is store the hash or code in the sessionStorage and removes the parameter from the url. That sessionStorage item is later picked up by the package as if it where the url.
