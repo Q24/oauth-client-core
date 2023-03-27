@@ -13,4 +13,5 @@ export interface OAuthRefreshTokenParameters {
    * by the resource owner.
    */
   scope?: string;
+  client_id: string;
 }

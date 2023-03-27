@@ -4,6 +4,7 @@ import {
   deleteStoredRefreshToken,
   getStoredRefreshToken,
 } from "./refresh-token";
+import { config } from '../../configuration/config.service';
 
 import type { OAuthRefreshTokenParameters } from "./model/refresh-token-request.model";
 import type { AuthResult } from "../../jwt/model/auth-result.model";
@@ -19,6 +20,7 @@ export function createCodeFlowRefreshRequestParameters(): OAuthRefreshTokenParam
   const oAuthCodeFlowRefreshParameters: OAuthRefreshTokenParameters = {
     grant_type: "refresh_token",
     refresh_token: refreshToken,
+    client_id: config.client_id,
   };
 
   return oAuthCodeFlowRefreshParameters;
