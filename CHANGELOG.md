@@ -1,3 +1,10 @@
+# [1.4.0-next.5](https://github.com/Q24/oauth-client-core/compare/v1.4.0-next.4...v1.4.0-next.5) (2023-03-27)
+
+
+### Bug Fixes
+
+* add ClientId to Token Refresh ([6764fd1](https://github.com/Q24/oauth-client-core/commit/6764fd1df144e6e082e5526012a30757e4406a6e))
+
 # [1.4.0-next.4](https://github.com/Q24/oauth-client-core/compare/v1.4.0-next.3...v1.4.0-next.4) (2023-03-07)
 
 
