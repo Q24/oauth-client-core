@@ -1,3 +1,10 @@
+# [1.4.0-next.6](https://github.com/Q24/oauth-client-core/compare/v1.4.0-next.5...v1.4.0-next.6) (2023-03-31)
+
+
+### Bug Fixes
+
+* Store the refresh token when lazy refreshing through CodeFlow ([e6d1bcd](https://github.com/Q24/oauth-client-core/commit/e6d1bcd15c1237a32f86679680bad962809e5683))
+
 # [1.4.0-next.5](https://github.com/Q24/oauth-client-core/compare/v1.4.0-next.4...v1.4.0-next.5) (2023-03-27)
 
 
